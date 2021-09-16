@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="38">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>68</ID>
+      <Description>"Player battle stats"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : guigubahuang.exe
+  Version: 
+  Date   : 2021-09-02
+  Author : Tuuup!
+
+  This script does blah blah blah
+}
+
+define(address,"GameAssembly.dll"+11A93AD)
+define(bytes,48 8B 02 41 0F B6 88 2C 01 00 00)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000,"GameAssembly.dll"+11A93AD)
+
+label(code)
+label(return)
+alloc(bstats,8,"GameAssembly.dll"+11A93AD)
+registersymbol(bstats)
+newmem:
+
+code:
+mov [bstats],rdx
+  mov rax,[rdx]
+  movzx ecx,byte ptr [r8+0000012C]
+  jmp return
+
+address:
+  jmp newmem
+  nop 6
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // mov rax,[rdx]
+  // movzx ecx,byte ptr [r8+0000012C]
+unregistersymbol(bstats)
+dealloc(*)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+11A93AD
+
+GameAssembly.dll+11A9389: E8 02 28 F3 FE           - call GameAssembly.dll+DBB90
+GameAssembly.dll+11A938E: C6 05 1A 9E 5D 02 01     - mov byte ptr [GameAssembly.dll+37831AF],01
+GameAssembly.dll+11A9395: 48 8B 53 58              - mov rdx,[rbx+58]
+GameAssembly.dll+11A9399: 48 85 D2                 - test rdx,rdx
+GameAssembly.dll+11A939C: 75 08                    - jne GameAssembly.dll+11A93A6
+GameAssembly.dll+11A939E: 33 C0                    - xor eax,eax
+GameAssembly.dll+11A93A0: 48 83 C4 20              - add rsp,20
+GameAssembly.dll+11A93A4: 5B                       - pop rbx
+GameAssembly.dll+11A93A5: C3                       - ret 
+GameAssembly.dll+11A93A6: 4C 8B 05 8B F6 29 02     - mov r8,[GameAssembly.dll+3448A38]
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+11A93AD: 48 8B 02                 - mov rax,[rdx]
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+11A93B0: 41 0F B6 88 2C 01 00 00  - movzx ecx,byte ptr [r8+0000012C]
+GameAssembly.dll+11A93B8: 38 88 2C 01 00 00        - cmp [rax+0000012C],cl
+GameAssembly.dll+11A93BE: 72 1E                    - jb GameAssembly.dll+11A93DE
+GameAssembly.dll+11A93C0: 48 8B 80 C8 00 00 00     - mov rax,[rax+000000C8]
+GameAssembly.dll+11A93C7: 4C 39 44 C8 F8           - cmp [rax+rcx*8-08],r8
+GameAssembly.dll+11A93CC: 75 10                    - jne GameAssembly.dll+11A93DE
+GameAssembly.dll+11A93CE: 33 C0                    - xor eax,eax
+GameAssembly.dll+11A93D0: B1 01                    - mov cl,01
+GameAssembly.dll+11A93D2: 84 C9                    - test cl,cl
+GameAssembly.dll+11A93D4: 48 0F 45 C2              - cmovne rax,rdx
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>69</ID>
+          <Description>"No description"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>bstats</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>73</ID>
+          <Description>"hp"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>bstats</Address>
+          <Offsets>
+            <Offset>60</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>72</ID>
+          <Description>"mp"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>bstats</Address>
+          <Offsets>
+            <Offset>64 </Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>71</ID>
+          <Description>"sp"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>bstats</Address>
+          <Offsets>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>70</ID>
+          <Description>"dp"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>bstats</Address>
+          <Offsets>
+            <Offset>6c</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>82</ID>
+      <Description>"Player stats world (go stats menu/switch.. do something)"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : guigubahuang.exe
+  Version: 
+  Date   : 2021-09-02
+  Author : Tuuup!
+
+  This script does blah blah blah
+}
+
+define(address,"GameAssembly.dll"+224818)
+define(bytes,48 8B 42 10 48 85 C0)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000,"GameAssembly.dll"+224818)
+
+label(code)
+label(return)
+alloc(wstats,8,"GameAssembly.dll"+224818)
+registersymbol(wstats)
+newmem:
+mov rax,[rdx+10]
+cmp rax,0
+je code
+mov [wstats],rax
+code:
+   test rax,rax
+  jmp return
+
+address:
+  jmp newmem
+  nop 2
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // mov rax,[rdx+10]
+  // test rax,rax
+unregistersymbol(wstats)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+224818
+
+GameAssembly.dll+2247EF: 48 8B DA              - mov rbx,rdx
+GameAssembly.dll+2247F2: 48 8B F9              - mov rdi,rcx
+GameAssembly.dll+2247F5: 48 85 D2              - test rdx,rdx
+GameAssembly.dll+2247F8: 0F 84 2E 01 00 00     - je GameAssembly.dll+22492C
+GameAssembly.dll+2247FE: 48 8B 42 18           - mov rax,[rdx+18]
+GameAssembly.dll+224802: 48 85 C0              - test rax,rax
+GameAssembly.dll+224805: 0F 84 21 01 00 00     - je GameAssembly.dll+22492C
+GameAssembly.dll+22480B: 48 8B 50 10           - mov rdx,[rax+10]
+GameAssembly.dll+22480F: 48 85 D2              - test rdx,rdx
+GameAssembly.dll+224812: 0F 84 14 01 00 00     - je GameAssembly.dll+22492C
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+224818: 48 8B 42 10           - mov rax,[rdx+10]
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+22481C: 48 85 C0              - test rax,rax
+GameAssembly.dll+22481F: 0F 84 07 01 00 00     - je GameAssembly.dll+22492C
+GameAssembly.dll+224825: 80 3D 98 C7 55 03 00  - cmp byte ptr [GameAssembly.dll+3780FC4],00
+GameAssembly.dll+22482C: 8B 70 4C              - mov esi,[rax+4C]
+GameAssembly.dll+22482F: 75 13                 - jne GameAssembly.dll+224844
+GameAssembly.dll+224831: 48 8D 0D 28 71 2A 03  - lea rcx,[GameAssembly.dll+34CB960]
+GameAssembly.dll+224838: E8 53 73 EB FF        - call GameAssembly.dll+DBB90
+GameAssembly.dll+22483D: C6 05 80 C7 55 03 01  - mov byte ptr [GameAssembly.dll+3780FC4],01
+GameAssembly.dll+224844: 48 8B 15 15 71 2A 03  - mov rdx,[GameAssembly.dll+34CB960]
+GameAssembly.dll+22484B: 48 8B 07              - mov rax,[rdi]
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>132</ID>
+          <Description>"base"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>133</ID>
+          <Description>"age"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>105</ID>
+          <Description>"reputation"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>44</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>103</ID>
+          <Description>"exp"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>48</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>104</ID>
+          <Description>"abilityPoint"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>60</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>102</ID>
+          <Description>"abilityExp"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>64</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>101</ID>
+          <Description>"abilityUpLevel"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>100</ID>
+          <Description>"talent"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>6c</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>99</ID>
+          <Description>"health"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>70</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>98</ID>
+          <Description>"health max"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>74</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>97</ID>
+          <Description>"hp"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>96</ID>
+          <Description>"hpMax"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>7c</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>95</ID>
+          <Description>"mp"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>94</ID>
+          <Description>"mpMax"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>84</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>93</ID>
+          <Description>"sp"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>88</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>92</ID>
+          <Description>"spMax"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>8c</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>91</ID>
+          <Description>"attack"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>90</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>90</ID>
+          <Description>"defense"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>94</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>88</ID>
+          <Description>"luck"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>9c</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>87</ID>
+          <Description>"energy/stamina"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>a0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>86</ID>
+          <Description>"energyMax"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>a4</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>85</ID>
+          <Description>"crit CHANGE"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>a8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>125</ID>
+          <Description>"crit damage Value"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>ac</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>124</ID>
+          <Description>"guard"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>b0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>123</ID>
+          <Description>"guardValue"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>b4</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>89</ID>
+          <Description>"footSpeed"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>98</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>122</ID>
+          <Description>"moveSpeed"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>b8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>121</ID>
+          <Description>"phycicalFree"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>bc</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>120</ID>
+          <Description>"magicFree"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>c0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>119</ID>
+          <Description>"basisFire"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>c4</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>118</ID>
+          <Description>"basisFroze water"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>c8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>117</ID>
+          <Description>"basisThunder"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>cc</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>116</ID>
+          <Description>"basisWind"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>d0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>115</ID>
+          <Description>"basisEarth"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>d4</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>114</ID>
+          <Description>"basisWood"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>d8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>113</ID>
+          <Description>"basisSword"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>dc</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>112</ID>
+          <Description>"basisSpear"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>e0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>111</ID>
+          <Description>"basisBlade"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>e4</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>110</ID>
+          <Description>"basisFist"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>e8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>109</ID>
+          <Description>"basisPalm"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>ec</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>108</ID>
+          <Description>"basisFinger"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>f0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>107</ID>
+          <Description>"refineElixir"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>f4</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>106</ID>
+          <Description>"refineWeapon"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>f8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>131</ID>
+          <Description>"geomancy/FENG SHUI"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>fc</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>130</ID>
+          <Description>"symbol"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>100</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>129</ID>
+          <Description>"herbal"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>104</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>128</ID>
+          <Description>"mine"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>108</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>127</ID>
+          <Description>"mood"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>10c</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>126</ID>
+          <Description>"moodMax"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>wstats</Address>
+          <Offsets>
+            <Offset>110</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>135</ID>
+      <Description>"Item amount editor"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : guigubahuang.exe
+  Version: 
+  Date   : 2021-09-02
+  Author : Tuuup!
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECTitems,GameAssembly.dll,8B 40 28 48 83 C4 28 C3 E8 60) // should be unique
+alloc(newmem,$1000,INJECTitems)
+alloc(items,4)
+label(code)
+label(return)
+
+newmem:
+
+code:
+mov [items],rax
+  mov eax,[rax+28]
+  add rsp,28
+  jmp return
+
+INJECTitems:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECTitems items)
+
+[DISABLE]
+
+INJECTitems:
+  db 8B 40 28 48 83 C4 28
+
+unregistersymbol(*)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+13041A3
+
+GameAssembly.dll+130418C: CC              - int 3 
+GameAssembly.dll+130418D: CC              - int 3 
+GameAssembly.dll+130418E: CC              - int 3 
+GameAssembly.dll+130418F: CC              - int 3 
+PropsData.get_propsCount: 48 83 EC 28     - sub rsp,28
+GameAssembly.dll+1304194: 48 8B 41 18     - mov rax,[rcx+18]
+GameAssembly.dll+1304198: 48 85 C0        - test rax,rax
+GameAssembly.dll+130419B: 74 0E           - je GameAssembly.dll+13041AB
+GameAssembly.dll+130419D: 83 78 18 02     - cmp dword ptr [rax+18],02
+GameAssembly.dll+13041A1: 76 0E           - jna GameAssembly.dll+13041B1
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+13041A3: 8B 40 28        - mov eax,[rax+28]
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+13041A6: 48 83 C4 28     - add rsp,28
+GameAssembly.dll+13041AA: C3              - ret 
+GameAssembly.dll+13041AB: E8 60 7B DD FE  - call GameAssembly.dll+DBD10
+GameAssembly.dll+13041B0: CC              - int 3 
+GameAssembly.dll+13041B1: E8 7A 77 DD FE  - call GameAssembly.dll+DB930
+GameAssembly.dll+13041B6: 48 8B C8        - mov rcx,rax
+GameAssembly.dll+13041B9: 33 D2           - xor edx,edx
+GameAssembly.dll+13041BB: E8 20 7B DD FE  - call GameAssembly.dll+DBCE0
+GameAssembly.dll+13041C0: CC              - int 3 
+GameAssembly.dll+13041C1: CC              - int 3 
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>139</ID>
+          <Description>"Click item in iventory to lock it..you find out"</Description>
+          <LastState Value="" RealAddress="00000000"/>
+          <Color>0000FF</Color>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>136</ID>
+          <Description>"amount"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>items</Address>
+          <Offsets>
+            <Offset>28</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>137</ID>
+      <Description>"Time/ current days"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : guigubahuang.exe
+  Version: 
+  Date   : 2021-09-02
+  Author : Tuuup!
+
+  This script does blah blah blah
+}
+
+define(address,"GameAssembly.dll"+E03210)
+define(bytes,48 89 5C 24 20)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000,"GameAssembly.dll"+E03210)
+alloc(time,4)
+label(code)
+label(return)
+registersymbol(time)
+newmem:
+
+code:
+  mov [rsp+20],rbx
+  mov [time],rcx
+  jmp return
+
+address:
+  jmp newmem
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // mov [rsp+20],rbx
+unregistersymbol(time)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: World.IsView
+
+GameAssembly.dll+E03202: 5B                    - pop rbx
+GameAssembly.dll+E03203: C3                    - ret 
+GameAssembly.dll+E03204: E8 07 8B 2D FF        - call GameAssembly.dll+DBD10
+GameAssembly.dll+E03209: CC                    - int 3 
+GameAssembly.dll+E0320A: CC                    - int 3 
+GameAssembly.dll+E0320B: CC                    - int 3 
+GameAssembly.dll+E0320C: CC                    - int 3 
+GameAssembly.dll+E0320D: CC                    - int 3 
+GameAssembly.dll+E0320E: CC                    - int 3 
+GameAssembly.dll+E0320F: CC                    - int 3 
+// ---------- INJECTING HERE ----------
+World.IsView: 48 89 5C 24 20        - mov [rsp+20],rbx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+E03215: 41 56                 - push r14
+GameAssembly.dll+E03217: 48 83 EC 20           - sub rsp,20
+GameAssembly.dll+E0321B: 80 3D 8D E5 97 02 00  - cmp byte ptr [GameAssembly.dll+37817AF],00
+GameAssembly.dll+E03222: 48 8B DA              - mov rbx,rdx
+GameAssembly.dll+E03225: 4C 8B F1              - mov r14,rcx
+GameAssembly.dll+E03228: 75 37                 - jne GameAssembly.dll+E03261
+GameAssembly.dll+E0322A: 48 8D 0D 27 3E 6A 02  - lea rcx,[GameAssembly.dll+34A7058]
+GameAssembly.dll+E03231: E8 5A 89 2D FF        - call GameAssembly.dll+DBB90
+GameAssembly.dll+E03236: 48 8D 0D 9B DE 79 02  - lea rcx,[GameAssembly.dll+35A10D8]
+GameAssembly.dll+E0323D: E8 4E 89 2D FF        - call GameAssembly.dll+DBB90
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>138</ID>
+          <Description>"total days = month/ year"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>time</Address>
+          <Offsets>
+            <Offset>10</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
