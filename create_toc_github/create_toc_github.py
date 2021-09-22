@@ -1,7 +1,7 @@
 import os
 
 #edit here
-given_path = (r"C:\\Users\\%username%\\Documents\\GitHub\\ADNinja\\")
+given_path = (r"C:\\Users\\%username%\\Documents\\GitHub\\%projectname%\\")
 
 with open("links.txt", "w") as file:
     for path, dirs, files in os.walk(given_path):
@@ -16,5 +16,5 @@ with open("links.txt", "w") as file:
         for f in files:
             folder_name_edited = str(folder_name.replace(" ", "%20"))
             f2 = str(f.replace(" ", "%20"))
-            link = "[%s](%s)" % (f.replace(".md", ""),str("https://github.com/vanhohen/ADNinja/blob/main/" + folder_name_edited + "/" + f2))
+            link = "[%s](%s)" % (f.replace(".md", ""),str("https://github.com/%username%/%projectname%/blob/main/" + folder_name_edited + "/" + f2))
             file.writelines(str(link) + "\n\n")
